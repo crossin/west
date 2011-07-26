@@ -7,6 +7,7 @@ package {
 	 */
 	public class Player extends FlxSprite {
 		protected var speed:Number;
+		protected var index:int;
 		
 		public function Player() {
 			super();
@@ -20,7 +21,7 @@ package {
 			acceleration.x = 0;
 			acceleration.y = 0;
 
-			if ((FlxG.state as PlayState).playerNow == this) {
+			if ((FlxG.state as PlayState).playerNow == index) {
 				if (FlxG.keys.A){
 					acceleration.x -= drag.x;
 				}

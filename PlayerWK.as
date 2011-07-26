@@ -12,6 +12,7 @@ package {
 		public function PlayerWK() {
 			super();
 			loadGraphic(ImgPlayer);
+			index = 1;
 			x = 100;
 			y = 100;
 		}
