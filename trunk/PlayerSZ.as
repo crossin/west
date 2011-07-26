@@ -12,6 +12,7 @@ package {
 		public function PlayerSZ() {
 			super();
 			loadGraphic(ImgPlayer);
+			index = 0;
 			x = 100;
 			y = 200;
 		}
