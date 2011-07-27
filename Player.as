@@ -8,6 +8,10 @@ package {
 	public class Player extends FlxSprite {
 		protected var speed:Number;
 		protected var index:int;
+		protected var shoot:Function;
+		protected var shootClock:Number;
+		protected var shootInterval:Number;
+		protected var bullets:Array;
 		
 		public function Player() {
 			super();
@@ -15,13 +19,17 @@ package {
 			maxVelocity.y = 170;
 			drag.x = 500;
 			drag.y = 500;
+			shoot = shoot1;
+			shootInterval = 0.15;
+			restartClock();
 		}
 
 		override public function update():void {
+			shootClock -= FlxG.elapsed;
 			acceleration.x = 0;
 			acceleration.y = 0;
 
-			if ((FlxG.state as PlayState).playerNow == index) {
+			if (PlayState.playerNow == index) {
 				if (FlxG.keys.A){
 					acceleration.x -= drag.x;
 				}
@@ -41,8 +49,22 @@ package {
 				velocity.x *= (maxVelocity.x / speed);
 				velocity.y *= (maxVelocity.y / speed);
 			}
+			
+			// shoot
+			if (shootClock < 0){
+				restartClock();
+				shoot();
+			}
+			
 			super.update();
 		}
 
+		protected function shoot1():void {
+			// to be override
+		}
+		
+		protected function restartClock():void {
+			shootClock = shootInterval;
+		}
 	}
 }
