@@ -4,6 +4,8 @@ package {
 	public class PlayState extends FlxState {
 		[Embed(source="res/gibs_bullet.png")]
 		private var ImgGibsBullet:Class;
+		[Embed(source="res/gibs_enemy.png")]
+		private var ImgGibsEnemy:Class;
 		
 		public static var players:FlxGroup;
 		public static var playerWK:PlayerWK;
@@ -11,13 +13,18 @@ package {
 		public static var playerNow:int;
 		
 		public static var gibsBullet:FlxEmitter;
+		public static var gibsEnemy:FlxEmitter;
 		
+		public static var bulletsPlayer:FlxGroup;
 		public static var bulletsPlayerWK:FlxGroup;
 		public static var bulletsPlayerSZ:FlxGroup;
+		
+		public var enemies:FlxGroup;
 
 		public function PlayState():void {
-			// player
 			init();
+			
+			// player
 			players.add(playerWK);
 			players.add(playerSZ);
 			add(players);
@@ -28,8 +35,10 @@ package {
 			
 			// emitter
 			add(gibsBullet);
+			add(gibsEnemy);
 			
-
+			enemies = new FlxGroup();
+			add(enemies);
 			
 			playerNow = 0;
 		}
@@ -48,6 +57,10 @@ package {
 				bulletsPlayerSZ.add(s);
 			}
 			
+			bulletsPlayer = new FlxGroup();
+			bulletsPlayer.add(bulletsPlayerWK);
+			bulletsPlayer.add(bulletsPlayerSZ);
+			
 			gibsBullet = new FlxEmitter();
 			gibsBullet.setXSpeed(-300, 300);
 			gibsBullet.setYSpeed(-300, 300);
@@ -55,6 +68,13 @@ package {
 			gibsBullet.particleDrag.x = 100;
 			gibsBullet.particleDrag.y = 100;
 			gibsBullet.createSprites(ImgGibsBullet, 100, 0, false);
+			gibsEnemy = new FlxEmitter();
+			gibsEnemy.setXSpeed(-300, 300);
+			gibsEnemy.setYSpeed(-300, 300);
+			gibsEnemy.gravity = 0;
+			gibsEnemy.particleDrag.x = 100;
+			gibsEnemy.particleDrag.y = 100;
+			gibsEnemy.createSprites(ImgGibsEnemy, 100, 0, false);
 			
 			players = new FlxGroup();
 			playerWK = new PlayerWK();
@@ -74,7 +94,15 @@ package {
 			if (FlxG.keys.justPressed("E")){
 				playerNow = (playerNow + 1) % 4;
 			}
+			
 			super.update();
+			
+			FlxU.overlap(bulletsPlayer, enemies, overlapped);
+		}
+		
+		protected function overlapped(Object1:FlxObject, Object2:FlxObject):void {
+			Object1.kill();
+			Object2.kill();
 		}
 	}
 }
