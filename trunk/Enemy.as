@@ -23,7 +23,6 @@ package {
 			
 			if (!onScreen()) {
 				super.kill();
-				trace("over!");
 			}
 		}
 		
