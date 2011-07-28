@@ -60,7 +60,7 @@ package {
 		}
 
 		protected function shoot1():void {
-			// to be override
+			// to be overridden
 		}
 		
 		protected function restartClock():void {
