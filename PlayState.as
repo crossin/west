@@ -20,6 +20,9 @@ package {
 		public static var bulletsPlayerSZ:FlxGroup;
 		
 		public var enemies:FlxGroup;
+		
+		protected var timer:Number;
+		protected var timerLast:Number;
 
 		public function PlayState():void {
 			init();
@@ -41,6 +44,8 @@ package {
 			add(enemies);
 			
 			playerNow = 0;
+			timer = 0;
+			timerLast = 0;
 		}
 		
 		public function init():void {
@@ -98,11 +103,19 @@ package {
 			super.update();
 			
 			FlxU.overlap(bulletsPlayer, enemies, overlapped);
+			
+			timer += FlxG.elapsed;
+			addEnemy();
+			timerLast = timer;
 		}
 		
 		protected function overlapped(Object1:FlxObject, Object2:FlxObject):void {
 			Object1.kill();
 			Object2.kill();
+		}
+		
+		protected function addEnemy():void {
+			// to be overridden
 		}
 	}
 }

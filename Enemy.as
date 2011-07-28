@@ -15,8 +15,18 @@ package {
 			score = scr;
 		}
 
+			
 
 
+		override public function update():void {
+			super.update();
+			
+			if (!onScreen()) {
+				super.kill();
+				trace("over!");
+			}
+		}
+		
 		override public function kill():void {
 			super.kill();
 			gibs.at(this);

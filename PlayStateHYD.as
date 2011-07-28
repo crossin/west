@@ -5,12 +5,17 @@ package {
 		
 		public function PlayStateHYD():void {
 			super();
-			enemies.add(new EnemyXY());
+			
 		}
 		
 		override public function update():void {
-
 			super.update();
+		}
+		
+		override protected function addEnemy():void {
+			if (timer % 2 < timerLast % 2){
+				enemies.add(new EnemyXY());
+			}
 		}
 	}
 }
