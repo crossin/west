@@ -11,7 +11,7 @@ package {
 			super(ImgEnemy, 100);
 			x = 400;
 			y = 300;
-			velocity.x = -100;
+			velocity.x = -200;
 		}
 	}
 }
