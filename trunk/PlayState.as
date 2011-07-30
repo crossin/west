@@ -10,6 +10,8 @@ package {
 		public static var players:FlxGroup;
 		public static var playerWK:PlayerWK;
 		public static var playerSZ:PlayerSZ;
+		public static var playerBJ:PlayerBJ;
+		public static var playerSS:PlayerSS;
 		public static var playerNow:int;
 		
 		public static var gibsBullet:FlxEmitter;
@@ -18,8 +20,11 @@ package {
 		public static var bulletsPlayer:FlxGroup;
 		public static var bulletsPlayerWK:FlxGroup;
 		public static var bulletsPlayerSZ:FlxGroup;
+		public static var bulletsPlayerBJ:FlxGroup;
+		public static var bulletsPlayerSS:FlxGroup;
 		
 		public var enemies:FlxGroup;
+		public var back:FlxSprite;
 		
 		protected var timer:Number;
 		protected var timerLast:Number;
@@ -27,14 +32,22 @@ package {
 		public function PlayState():void {
 			init();
 			
-			// player
-			players.add(playerWK);
-			players.add(playerSZ);
-			add(players);
-
+			// back
+			back = new FlxSprite();
+			add(back);
+			
 			// bullets
 			add(bulletsPlayerWK);
 			add(bulletsPlayerSZ);
+			add(bulletsPlayerBJ);
+			add(bulletsPlayerSS);
+			
+			// player
+			players.add(playerWK);
+			players.add(playerSZ);
+			players.add(playerBJ);
+			players.add(playerSS);
+			add(players);
 			
 			// emitter
 			add(gibsBullet);
@@ -61,29 +74,43 @@ package {
 				s = new BulletPlayerSZ();
 				bulletsPlayerSZ.add(s);
 			}
+			bulletsPlayerBJ = new FlxGroup();
+			for (i = 0; i < 32; i++){
+				s = new BulletPlayerBJ();
+				bulletsPlayerBJ.add(s);
+			}
+			bulletsPlayerSS = new FlxGroup();
+			for (i = 0; i < 32; i++){
+				s = new BulletPlayerSS();
+				bulletsPlayerSS.add(s);
+			}
 			
 			bulletsPlayer = new FlxGroup();
 			bulletsPlayer.add(bulletsPlayerWK);
 			bulletsPlayer.add(bulletsPlayerSZ);
+			bulletsPlayer.add(bulletsPlayerBJ);
+			bulletsPlayer.add(bulletsPlayerSS);
 			
 			gibsBullet = new FlxEmitter();
 			gibsBullet.setXSpeed(-300, 300);
 			gibsBullet.setYSpeed(-300, 300);
-			gibsBullet.gravity = 0;
+			gibsBullet.gravity = 1000;
 			gibsBullet.particleDrag.x = 100;
 			gibsBullet.particleDrag.y = 100;
-			gibsBullet.createSprites(ImgGibsBullet, 100, 0, false);
+			gibsBullet.createSprites(ImgGibsBullet, 100, 0);
 			gibsEnemy = new FlxEmitter();
 			gibsEnemy.setXSpeed(-300, 300);
 			gibsEnemy.setYSpeed(-300, 300);
 			gibsEnemy.gravity = 0;
 			gibsEnemy.particleDrag.x = 100;
 			gibsEnemy.particleDrag.y = 100;
-			gibsEnemy.createSprites(ImgGibsEnemy, 100, 0, false);
+			gibsEnemy.createSprites(ImgGibsEnemy, 100, 0);
 			
 			players = new FlxGroup();
 			playerWK = new PlayerWK();
 			playerSZ = new PlayerSZ();
+			playerBJ = new PlayerBJ();
+			playerSS = new PlayerSS();
 		}
 
 		override public function update():void {
@@ -111,7 +138,7 @@ package {
 		
 		protected function overlapped(Object1:FlxObject, Object2:FlxObject):void {
 			Object1.kill();
-			Object2.kill();
+			//Object2.kill();
 		}
 		
 		protected function addEnemy():void {
