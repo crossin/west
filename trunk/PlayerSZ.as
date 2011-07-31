@@ -11,7 +11,9 @@ package {
 		
 		public function PlayerSZ() {
 			super();
-			loadGraphic(ImgPlayer);
+			loadGraphic(ImgPlayer, true, false, 48, 64);
+			addAnimation("play", [0, 1], 8);
+			play("play");
 			index = 0;
 			bullets = PlayState.bulletsPlayerSZ.members;
 			shootInterval = 0.5;
