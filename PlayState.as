@@ -6,6 +6,8 @@ package {
 		private var ImgGibsBullet:Class;
 		[Embed(source="res/gibs_enemy.png")]
 		private var ImgGibsEnemy:Class;
+		[Embed(source="res/back.png")]
+		private var ImgBack:Class;
 		
 		public static var players:FlxGroup;
 		public static var playerWK:PlayerWK;
@@ -26,6 +28,10 @@ package {
 		public var enemies:FlxGroup;
 		public var back:FlxSprite;
 		
+		protected var backNear:FlxSprite;
+		protected var backFar:FlxSprite;
+		protected var fore:FlxSprite;
+		
 		protected var timer:Number;
 		protected var timerLast:Number;
 
@@ -33,8 +39,12 @@ package {
 			init();
 			
 			// back
-			back = new FlxSprite();
+			back = new FlxSprite(0, 0, ImgBack);
 			add(back);
+			backFar = new FlxSprite();
+			add(backFar);
+			backNear = new FlxSprite();
+			add(backNear);
 			
 			// bullets
 			add(bulletsPlayerWK);
@@ -49,12 +59,18 @@ package {
 			players.add(playerSS);
 			add(players);
 			
+			// enemies
+			enemies = new FlxGroup();
+			add(enemies);
+			
 			// emitter
 			add(gibsBullet);
 			add(gibsEnemy);
 			
-			enemies = new FlxGroup();
-			add(enemies);
+			// fore
+			fore = new FlxSprite();
+			fore.exists = false;
+			add(fore);
 			
 			playerNow = 0;
 			timer = 0;
@@ -134,6 +150,11 @@ package {
 			timer += FlxG.elapsed;
 			addEnemy();
 			timerLast = timer;
+			
+			backFar.x -= FlxG.elapsed * 20;
+			backNear.x -= FlxG.elapsed * 50;
+			fore.x -= FlxG.elapsed * 150;
+			
 		}
 		
 		protected function overlapped(Object1:FlxObject, Object2:FlxObject):void {
