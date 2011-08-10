@@ -75,6 +75,11 @@ package {
 			playerNow = 0;
 			timer = 0;
 			timerLast = 0;
+			
+
+			var tt:ZhText = new ZhText();
+			tt.text = "啊多会能发"
+			addChild(tt);
 		}
 		
 		public function init():void {
