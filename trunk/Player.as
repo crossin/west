@@ -13,8 +13,11 @@ package {
 		protected var shootInterval:Number;
 		protected var bullets:Array;
 		
-		public function Player() {
+		public function Player(img:Class) {
 			super();
+			loadGraphic(img, true, false, 48, 64);
+			addAnimation("play", [0, 1], 8);
+			play("play");
 			maxVelocity.x = 170;
 			maxVelocity.y = 170;
 			drag.x = 500;

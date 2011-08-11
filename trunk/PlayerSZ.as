@@ -10,10 +10,7 @@ package {
 		protected var ImgPlayer:Class;
 		
 		public function PlayerSZ() {
-			super();
-			loadGraphic(ImgPlayer, true, false, 48, 64);
-			addAnimation("play", [0, 1], 8);
-			play("play");
+			super(ImgPlayer);
 			index = 0;
 			bullets = PlayState.bulletsPlayerSZ.members;
 			shootInterval = 0.5;

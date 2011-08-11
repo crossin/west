@@ -10,10 +10,7 @@ package {
 		protected var ImgPlayer:Class;
 
 		public function PlayerWK(){
-			super();
-			loadGraphic(ImgPlayer, true, false, 48, 64);
-			addAnimation("play", [0, 1], 8);
-			play("play");
+			super(ImgPlayer);
 			index = 1;
 			bullets = PlayState.bulletsPlayerWK.members;
 			shootInterval = 0.15;

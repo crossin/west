@@ -10,8 +10,7 @@ package {
 		protected var ImgPlayer:Class;
 		
 		public function PlayerSS() {
-			super();
-			loadGraphic(ImgPlayer);
+			super(ImgPlayer);
 			index = 3;
 			bullets = PlayState.bulletsPlayerSS.members;
 			shootInterval = 1.5;

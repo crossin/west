@@ -10,11 +10,10 @@ package {
 		protected var ImgPlayer:Class;
 		
 		public function PlayerBJ() {
-			super();
-			loadGraphic(ImgPlayer);
+			super(ImgPlayer);
 			index = 2;
 			bullets = PlayState.bulletsPlayerBJ.members;
-			shootInterval = 0.05;
+			shootInterval = 0.2;
 			x = 100;
 			y = 30;
 		}
