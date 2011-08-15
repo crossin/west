@@ -1,15 +1,14 @@
 package {
-	import org.flixel.FlxEmitter;
 	import org.flixel.FlxSprite;
 
 	/**
 	 * ...
 	 * @author Crossin
 	 */
-	public class BulletPlayer extends FlxSprite {
+	public class BulletEnemy extends FlxSprite {
 		public var damage:int;
 		
-		public function BulletPlayer(img:Class, dmg:int){
+		public function BulletEnemy(img:Class, dmg:int){
 			super(0, 0, img);
 			exists = false;
 			damage = dmg;
@@ -27,6 +26,10 @@ package {
 			var gibs:FlxEmitter = PlayState.gibsBullet;
 			gibs.at(this);
 			gibs.start(true, 0.5, 1);
+		}
+		
+		protected function shoot():void {
+			// to be overridden
 		}
 	}
 }
