@@ -24,6 +24,7 @@ package {
 		public static var bulletsPlayerSZ:FlxGroup;
 		public static var bulletsPlayerBJ:FlxGroup;
 		public static var bulletsPlayerSS:FlxGroup;
+		public static var bulletsEnemy:FlxGroup;
 		
 		public var enemies:FlxGroup;
 		public var back:FlxSprite;
@@ -47,6 +48,7 @@ package {
 			add(backNear);
 			
 			// bullets
+			add(bulletsEnemy);
 			add(bulletsPlayerWK);
 			add(bulletsPlayerSZ);
 			add(bulletsPlayerBJ);
@@ -111,6 +113,12 @@ package {
 			bulletsPlayer.add(bulletsPlayerSZ);
 			bulletsPlayer.add(bulletsPlayerBJ);
 			bulletsPlayer.add(bulletsPlayerSS);
+			
+			bulletsEnemy = new FlxGroup();
+			for (i = 0; i < 64; i++){
+				s = new BulletEnemy();
+				bulletsEnemy.add(s);
+			}
 			
 			gibsBullet = new FlxEmitter();
 			gibsBullet.setXSpeed(-300, 300);

@@ -13,12 +13,15 @@ package {
 			backFar.loadGraphic(ImgBackFar);
 		}
 		
-		override public function update():void {
-			super.update();
-		}
+		//override public function update():void {
+			//super.update();
+		//}
 		
 		override protected function addEnemy():void {
-			if (timer % 4 < timerLast % 4){
+			//if (timer % 4 < timerLast % 4) {
+				//enemies.add(new EnemyXY());
+			//}
+			if (timer >= 2 && timerLast < 2) {
 				enemies.add(new EnemyXY());
 			}
 		}
