@@ -9,6 +9,7 @@ package {
 
 		public function EnemyXY(){
 			super(ImgEnemy, 100);
+			bullets = PlayState.bulletsEnemy1.members;
 			x = 800;
 			y = 300;
 			velocity.x = -100;
@@ -30,11 +31,12 @@ package {
 		}
 		
 		override protected function shoot():void {
-			var b:BulletEnemy = bullets[BulletEnemy.bulletIndex];
+			var b:BulletEnemy1 = bullets[BulletEnemy1.bulletIndex];
 			b.reset(x + width / 2, y + (height - b.height) / 2);
 			b.velocity.x = -100;
-			BulletEnemy.bulletIndex++;
-			if (BulletEnemy.bulletIndex >= bullets.length)
-				BulletEnemy.bulletIndex = 0;		}
+			BulletEnemy1.bulletIndex++;
+			if (BulletEnemy1.bulletIndex >= bullets.length)
+				BulletEnemy1.bulletIndex = 0;
+		}
 	}
 }

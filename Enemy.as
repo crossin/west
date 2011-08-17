@@ -16,7 +16,6 @@ package {
 		public function Enemy(img:Class, scr:int){
 			super(0, 0, img);
 			gibs = PlayState.gibsEnemy;
-			bullets = PlayState.bulletsEnemy.members;
 			score = scr;
 			alive = false;
 			timer = 0;

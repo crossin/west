@@ -7,17 +7,12 @@ package {
 	 * @author Crossin
 	 */
 	public class BulletEnemy extends FlxSprite {
-		[Embed(source="res/bullet.png")]
-		private var ImgBullet:Class;
-		
-		public static var bulletIndex:uint;
-		
 		public var damage:int;
 		
-		public function BulletEnemy(){
-			super(0, 0, ImgBullet);
+		public function BulletEnemy(img:Class, dmg:int){
+			super(0, 0, img);
 			exists = false;
-			damage = 10;
+			damage = dmg;
 		}
 		
 		override public function update():void {
