@@ -12,6 +12,7 @@ package {
 		protected var shootClock:Number;
 		protected var shootInterval:Number;
 		protected var bullets:Array;
+		public var healthMax:Number;
 		
 		public function Player(img:Class) {
 			super();
@@ -68,6 +69,10 @@ package {
 		
 		protected function restartClock():void {
 			shootClock = shootInterval;
+		}
+		
+		public function refresh():void {
+			health = healthMax;
 		}
 	}
 }
