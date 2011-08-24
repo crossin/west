@@ -14,6 +14,7 @@ package {
 			index = 0;
 			bullets = PlayState.bulletsPlayerSZ.members;
 			shootInterval = 0.5;
+			healthMax = 100;
 			x = 100;
 			y = 200;
 		}

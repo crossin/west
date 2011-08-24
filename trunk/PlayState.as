@@ -27,6 +27,11 @@ package {
 		public static var bulletsEnemy:FlxGroup;
 		public static var bulletsEnemy1:FlxGroup;
 		
+		public static var hudSZ:HUDPlayer;
+		public static var hudWK:HUDPlayer;
+		public static var hudBJ:HUDPlayer;
+		public static var hudSS:HUDPlayer;
+		
 		public var enemies:FlxGroup;
 		public var back:FlxSprite;
 		
@@ -56,8 +61,12 @@ package {
 			add(bulletsPlayerSS);
 			
 			// player
-			players.add(playerWK);
+			playerSZ.refresh();
+			playerWK.refresh();
+			playerBJ.refresh();
+			playerSS.refresh();
 			players.add(playerSZ);
+			players.add(playerWK);
 			players.add(playerBJ);
 			players.add(playerSS);
 			add(players);
@@ -74,6 +83,16 @@ package {
 			fore = new FlxSprite();
 			fore.exists = false;
 			add(fore);
+			
+			// hud
+			hudSZ.updateLife();
+			hudWK.updateLife();
+			hudBJ.updateLife();
+			hudSS.updateLife();
+			add(hudSZ);
+			add(hudWK);
+			add(hudBJ);
+			add(hudSS);
 			
 			playerNow = 0;
 			timer = 0;
@@ -142,6 +161,11 @@ package {
 			playerSZ = new PlayerSZ();
 			playerBJ = new PlayerBJ();
 			playerSS = new PlayerSS();
+			
+			hudSZ = new HUDPlayer(0);
+			hudWK = new HUDPlayer(1);
+			hudBJ = new HUDPlayer(2);
+			hudSS = new HUDPlayer(3);
 		}
 
 		override public function update():void {
