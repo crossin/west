@@ -8,6 +8,8 @@ package {
 		private var ImgGibsEnemy:Class;
 		[Embed(source="res/back.png")]
 		private var ImgBack:Class;
+		[Embed(source="res/back_hud.png")]
+		private var ImgBackHUD:Class;
 		
 		public static var players:FlxGroup;
 		public static var playerWK:PlayerWK;
@@ -27,14 +29,16 @@ package {
 		public static var bulletsEnemy:FlxGroup;
 		public static var bulletsEnemy1:FlxGroup;
 		
+		public static var back:FlxSprite;
+		public static var backHUD:FlxSprite;
+		
 		public static var hudSZ:HUDPlayer;
 		public static var hudWK:HUDPlayer;
 		public static var hudBJ:HUDPlayer;
 		public static var hudSS:HUDPlayer;
 		
 		public var enemies:FlxGroup;
-		public var back:FlxSprite;
-		
+
 		protected var backNear:FlxSprite;
 		protected var backFar:FlxSprite;
 		protected var fore:FlxSprite;
@@ -46,7 +50,6 @@ package {
 			init();
 			
 			// back
-			back = new FlxSprite(0, 0, ImgBack);
 			add(back);
 			backFar = new FlxSprite();
 			add(backFar);
@@ -85,6 +88,8 @@ package {
 			add(fore);
 			
 			// hud
+			add(backHUD);
+			
 			hudSZ.updateLife();
 			hudWK.updateLife();
 			hudBJ.updateLife();
@@ -105,6 +110,9 @@ package {
 		}
 		
 		public function init():void {
+			back = new FlxSprite(0, 0, ImgBack);
+			backHUD = new FlxSprite(0, 0, ImgBackHUD);
+			
 			var s:FlxSprite;
 			var i:int;
 			bulletsPlayerWK = new FlxGroup();

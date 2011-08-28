@@ -27,7 +27,7 @@ package {
 		public function HUDPlayer(index:int){
 			super();
 			x = 20 + 120 * index;
-			y = 20;
+			y = 420;
 			switch (index){
 				case 0:
 					player = PlayState.playerSZ;
