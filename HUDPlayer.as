@@ -7,53 +7,53 @@ package {
 	 * @author crossin
 	 */
 	public class HUDPlayer extends FlxGroup {
-		[Embed(source="res/hud_back.png")]
-		private var ImgBack:Class;
-		[Embed(source="res/hud_head_sz.png")]
-		private var ImgHeadSZ:Class;
-		[Embed(source="res/hud_head_wk.png")]
-		private var ImgHeadWK:Class;
-		[Embed(source="res/hud_head_bj.png")]
-		private var ImgHeadBJ:Class;
-		[Embed(source="res/hud_head_ss.png")]
-		private var ImgHeadSS:Class;
+		//[Embed(source="res/hud_back.png")]
+		//private var ImgBack:Class;
+		[Embed(source="res/hud_sz.png")]
+		private var ImgSZ:Class;
+		[Embed(source="res/hud_wk.png")]
+		private var ImgWK:Class;
+		[Embed(source="res/hud_bj.png")]
+		private var ImgBJ:Class;
+		[Embed(source="res/hud_ss.png")]
+		private var ImgSS:Class;
 
 		public var back:FlxSprite;
-		public var head:FlxSprite;
+		//public var head:FlxSprite;
 		public var player:Player;
 		public var life:FlxSprite;
 		//public var mana:FlxSprite;
 
 		public function HUDPlayer(index:int){
 			super();
-			x = 20 + 120 * index;
-			y = 420;
+			x = 160 * index;
+			y = 400;
 			switch (index){
 				case 0:
 					player = PlayState.playerSZ;
-					head = new FlxSprite(0, 0, ImgHeadSZ);
+					back = new FlxSprite(0, 0, ImgSZ);
 					break;
 				case 1:
 					player = PlayState.playerWK;
-					head = new FlxSprite(0, 0, ImgHeadWK);
+					back = new FlxSprite(0, 0, ImgWK);
 					break;
 				case 2:
 					player = PlayState.playerBJ;
-					head = new FlxSprite(0, 0, ImgHeadBJ);
+					back = new FlxSprite(0, 0, ImgBJ);
 					break;
 				case 3:
 					player = PlayState.playerSS;
-					head = new FlxSprite(0, 0, ImgHeadSS);
+					back = new FlxSprite(0, 0, ImgSS);
 					break;
 			}
-			back = new FlxSprite(0, 0, ImgBack);
+			//back = new FlxSprite(0, 0, ImgBack);
 			add(back);
 			
-			add(head);
+			//add(head);
 			
-			life = new FlxSprite(35, 30);
-			life.createGraphic(60, 4);
-			life.fill(0xffffff00);
+			life = new FlxSprite(60, 30);
+			life.createGraphic(80, 4);
+			life.fill(0xffff7777);
 			life.origin.x = 0;
 			add(life);
 		}
