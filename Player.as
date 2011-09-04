@@ -13,8 +13,8 @@ package {
 		protected var shootInterval:Number;
 		protected var bullets:Array;
 		public var healthMax:Number;
-		
-		public function Player(img:Class) {
+
+		public function Player(img:Class){
 			super();
 			loadGraphic(img, true, false, 48, 64);
 			addAnimation("play", [0, 1], 8);
@@ -33,7 +33,7 @@ package {
 			acceleration.x = 0;
 			acceleration.y = 0;
 
-			if (PlayState.playerNow == index) {
+			if (PlayState.playerNow == index){
 				if (FlxG.keys.A){
 					acceleration.x -= drag.x;
 				}
@@ -53,24 +53,29 @@ package {
 				velocity.x *= (maxVelocity.x / speed);
 				velocity.y *= (maxVelocity.y / speed);
 			}
-			
+
 			// shoot
 			if (shootClock < 0){
 				restartClock();
 				shoot();
 			}
-			
+
 			super.update();
+
+			x = x < 0 ? 0 : x;
+			x = x > 592 ? 592 : x;
+			y = y < 20 ? 20 : y;
+			y = y > 336 ? 336 : y;
 		}
 
 		protected function shoot1():void {
 			// to be overridden
 		}
-		
+
 		protected function restartClock():void {
 			shootClock = shootInterval;
 		}
-		
+
 		public function refresh():void {
 			health = healthMax;
 		}
