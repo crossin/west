@@ -39,9 +39,9 @@ package {
 
 		public var enemies:FlxGroup;
 
-		protected var backNear:FlxSprite;
-		protected var backFar:FlxSprite;
-		protected var fore:FlxSprite;
+		protected var backNear:FlxGroup;
+		protected var backFar:FlxGroup;
+		//protected var fore:FlxSprite;
 
 		protected var timer:Number;
 		protected var timerLast:Number;
@@ -51,9 +51,9 @@ package {
 
 			// back
 			add(back);
-			backFar = new FlxSprite();
-			//add(backFar);
-			backNear = new FlxSprite(0, 20);
+			backFar = new FlxGroup();
+			add(backFar);
+			backNear = new FlxGroup();
 			add(backNear);
 
 			// bullets
@@ -83,9 +83,9 @@ package {
 			add(gibsEnemy);
 
 			// fore
-			fore = new FlxSprite();
-			fore.exists = false;
-			add(fore);
+			//fore = new FlxSprite();
+			//fore.exists = false;
+			//add(fore);
 
 			// hud
 			add(backHUD);
@@ -205,10 +205,10 @@ package {
 			addEnemy();
 			timerLast = timer;
 
-			//backFar.x -= FlxG.elapsed * 20;
-			backNear.x -= FlxG.elapsed * 20;
-			back.x -= FlxG.elapsed * 20;
-			fore.x -= FlxG.elapsed * 150;
+			//backFar.x -= FlxG.elapsed * 10;
+			//backNear.x -= FlxG.elapsed * 20;
+			//back.x -= FlxG.elapsed * 20;
+			//fore.x -= FlxG.elapsed * 150;
 
 		}
 
