@@ -6,9 +6,9 @@ package {
 		private var ImgGibsBullet:Class;
 		[Embed(source="res/gibs_enemy.png")]
 		private var ImgGibsEnemy:Class;
-		[Embed(source="res/back.png")]
+		[Embed(source="res/back.gif")]
 		private var ImgBack:Class;
-		[Embed(source="res/back_hud.png")]
+		[Embed(source="res/back_hud.gif")]
 		private var ImgBackHUD:Class;
 
 		public static var players:FlxGroup;
@@ -31,6 +31,8 @@ package {
 
 		public static var back:FlxSprite;
 		public static var backHUD:FlxSprite;
+		
+		public static var tag:Tag;
 
 		public static var hudSZ:HUDPlayer;
 		public static var hudWK:HUDPlayer;
@@ -38,6 +40,8 @@ package {
 		public static var hudSS:HUDPlayer;
 
 		public var enemies:FlxGroup;
+		public var enemyList:Array;
+		public var enemyCount:int;
 
 		protected var backNear:FlxGroup;
 		protected var backFar:FlxGroup;
@@ -99,11 +103,13 @@ package {
 			add(hudBJ);
 			add(hudWK);
 			add(hudSZ);
+			
+			add(tag);
 
 			playerNow = 0;
 			timer = 0;
 			timerLast = 0;
-
+			enemyCount = 0;
 
 			//var tt:ZhText = new ZhText();
 			//tt.text = "啊多会能发"
@@ -113,6 +119,8 @@ package {
 		public function init():void {
 			back = new FlxSprite(0, 0, ImgBack);
 			backHUD = new FlxSprite(0, 0, ImgBackHUD);
+			
+			tag = new Tag();
 
 			var s:FlxSprite;
 			var i:int;
@@ -200,6 +208,7 @@ package {
 			super.update();
 
 			FlxU.overlap(bulletsPlayer, enemies, overlapped);
+			FlxU.overlap(bulletsEnemy, players, overlapped);
 
 			timer += FlxG.elapsed;
 			addEnemy();
@@ -213,8 +222,13 @@ package {
 		}
 
 		protected function overlapped(Object1:FlxObject, Object2:FlxObject):void {
+			if (Object1 is BulletPlayer){
+				Object2.hurt((Object1 as BulletPlayer).damage);
+			}
+			if (Object1 is BulletEnemy){
+				Object2.hurt((Object1 as BulletEnemy).damage);
+			}
 			Object1.kill();
-			//Object2.kill();
 		}
 
 		protected function addEnemy():void {

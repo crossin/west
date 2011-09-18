@@ -46,6 +46,8 @@ package {
 				if (FlxG.keys.S){
 					acceleration.y += drag.y;
 				}
+
+				PlayState.tag.change(x + 3, y, health/healthMax);
 			}
 
 			speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y)

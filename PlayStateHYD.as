@@ -22,7 +22,7 @@ package {
 		private var ImgNear5:Class;
 		[Embed(source="res/back_hyd_n6.png")]
 		private var ImgNear6:Class;
-		
+
 
 		public function PlayStateHYD():void {
 			super();
@@ -37,6 +37,14 @@ package {
 			backNear.add(new BackGround(ImgNear4));
 			backNear.add(new BackGround(ImgNear5));
 			backNear.add(new BackGround(ImgNear6));
+
+			enemyList = [[1, Enemy1, 650, 50], 
+						 [1.2, Enemy1, 650, 100], 
+						 [1.4, Enemy1, 650, 150], 
+						 [1.6, Enemy1, 650, 200], 
+						 [1.8, Enemy1, 650, 250], 
+						 [2, Enemy1, 650, 300], 
+						 ];
 		}
 
 		//override public function update():void {
@@ -47,8 +55,9 @@ package {
 			//if (timer % 4 < timerLast % 4) {
 			//enemies.add(new EnemyXY());
 			//}
-			if (timer >= 2 && timerLast < 2){
-				enemies.add(new EnemyXY());
+			while (enemyCount < enemyList.length && timer >= enemyList[enemyCount][0] && timerLast < enemyList[enemyCount][0]){
+				enemies.add(new enemyList[enemyCount][1](enemyList[enemyCount][2],enemyList[enemyCount][3]));
+				enemyCount++;
 			}
 		}
 	}
