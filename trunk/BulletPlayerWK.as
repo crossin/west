@@ -10,7 +10,7 @@ package {
 		public static var bulletIndex:uint;
 		
 		public function BulletPlayerWK(){
-			super(ImgBullet, 10);
+			super(ImgBullet, 5);
 		}
 	}
 }

@@ -19,7 +19,7 @@ package {
 		public static var bulletIndex:uint;
 
 		public function BulletPlayerSZ(){
-			super(ImgBullet, 10);
+			super(ImgBullet, 3);
 			unitVelocity = 300;
 			unitVelocityAngle = 8;
 		}
