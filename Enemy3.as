@@ -4,11 +4,11 @@ package {
 	 * ...
 	 * @author Crossin
 	 */
-	public class Enemy1 extends Enemy {
-		[Embed(source="res/enemy_1.gif")]
+	public class Enemy3 extends Enemy {
+		[Embed(source="res/enemy_3.gif")]
 		private var ImgEnemy:Class;
 
-		public function Enemy1(ix:int, iy:int){
+		public function Enemy3(ix:int, iy:int){
 			super(ImgEnemy, 100);
 			bullets = PlayState.bulletsEnemy1.members;
 			x = ix;

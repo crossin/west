@@ -8,8 +8,8 @@ package {
 	public class PlayerSZ extends Player {
 		[Embed(source="res/player_sz.png")]
 		protected var ImgPlayer:Class;
-		
-		public function PlayerSZ() {
+
+		public function PlayerSZ(){
 			super(ImgPlayer);
 			index = 0;
 			bullets = PlayState.bulletsPlayerSZ.members;
@@ -18,7 +18,7 @@ package {
 			x = 100;
 			y = 200;
 		}
-		
+
 		override protected function shoot1():void {
 			var b:BulletPlayerSZ = bullets[BulletPlayerSZ.bulletIndex];
 			b.reset(x + width / 2, y + (height - b.height) / 2);
@@ -26,7 +26,10 @@ package {
 			b.velocity.y = 0;
 			b.angleNow = 0;
 			b.target = (FlxG.state as PlayState).enemies.getFirstAlive() as Enemy;
-			BulletPlayerSZ.bulletIndex ++ ;
+			if (b.target && !b.target.onScreen()){
+				b.target = null;
+			}
+			BulletPlayerSZ.bulletIndex++;
 			if (BulletPlayerSZ.bulletIndex >= bullets.length)
 				BulletPlayerSZ.bulletIndex = 0;
 		}

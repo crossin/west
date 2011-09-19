@@ -4,30 +4,27 @@ package {
 	 * ...
 	 * @author Crossin
 	 */
-	public class Enemy1 extends Enemy {
-		[Embed(source="res/enemy_1.gif")]
+	public class Enemy2 extends Enemy {
+		[Embed(source="res/enemy_2.gif")]
 		private var ImgEnemy:Class;
 
-		public function Enemy1(ix:int, iy:int){
+		public function Enemy2(ix:int, iy:int){
 			super(ImgEnemy, 100);
 			bullets = PlayState.bulletsEnemy1.members;
 			x = ix;
 			y = iy;
-			velocity.x = -150;
+			velocity.y = y < 0 ? 100 : -100;
 			health = 50;
 		}
 
 		override public function update():void {
 			super.update();
 			// move
-			if (timer >= 2 && timerLast < 2){
-				velocity.x = 0;
-			}
 			if (timer >= 3 && timerLast < 3){
-				velocity.x = 150;
+				acceleration.x = 150;
 			}
 			// shoot
-			if (timer >= 2 && timerLast < 2){
+			if (timer >= 3 && timerLast < 3){
 				shoot();
 			}
 		}
