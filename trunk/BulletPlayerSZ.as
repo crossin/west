@@ -46,6 +46,9 @@ package {
 			}
 			if (!target || !target.exists){
 				target = (FlxG.state as PlayState).enemies.getFirstAlive() as Enemy;
+				if (target && !target.onScreen()){
+					target = null;
+				}
 			}
 
 			super.update();
